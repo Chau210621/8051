@@ -1,0 +1,78 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/15/2022 11:56:08 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Delay.h"
+   3          #include"port.h"
+   4          
+   5          bit PressedFlag = 0;//ep co
+   6          
+   7          unsigned char KiemTraButton()
+   8          {
+   9   1        unsigned char i;
+  10   1        for(i = 0; i < 50; i++){
+  11   2          Delay_ms(10);
+  12   2          if(button == 0)
+  13   2          {
+  14   3            if(PressedFlag == 0){
+  15   4              PressedFlag = 1;
+  16   4              return 1;
+  17   4            }
+  18   3          }
+  19   2          else
+  20   2          {
+  21   3            PressedFlag = 0 ;
+  22   3          }
+  23   2        }
+  24   1        return 0;
+  25   1      }
+  26          
+  27          void main(){
+  28   1        unsigned char i;
+  29   1        while(1){
+  30   2          
+  31   2          led = 0x00;
+  32   2          for(i = 0; i < 10 ; i++){
+  33   3            led = ~led;
+  34   3            if(KiemTraButton())
+  35   3              break;
+  36   3          }
+  37   2          //Hieu ung 2
+  38   2          led = 0x55;
+  39   2          for(i = 0; i < 10; i++){
+  40   3            if(KiemTraButton())
+  41   3              break;
+  42   3            led = ~led;
+  43   3          }
+  44   2          //Hieu ung 3
+  45   2          led = 0x0F;
+  46   2          for(i =0; i < 10; i++){
+  47   3            if(KiemTraButton())
+  48   3              break;
+  49   3            led = ~led;
+  50   3          }
+  51   2        }
+  52   1      }
+
+
+C51 COMPILER V9.60.0.0   MAIN                                                              12/15/2022 11:56:08 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    130    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

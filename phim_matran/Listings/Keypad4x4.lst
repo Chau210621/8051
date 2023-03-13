@@ -1,0 +1,62 @@
+C51 COMPILER V9.60.0.0   KEYPAD4X4                                                         12/21/2022 10:07:01 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEYPAD4X4
+OBJECT MODULE PLACED IN .\Objects\Keypad4x4.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Lib\Keypad4x4.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\Keypad4x4.lst) TABS(2) OBJECT(.\Objects\Keypad4x4.obj)
+
+line level    source
+
+   1          #include"Keypad4x4.h"
+   2          #include"main.h"
+   3          #include"port.h"
+   4          
+   5          unsigned char KeyPress()
+   6          {
+   7   1        unsigned char key = 0;
+   8   1        
+   9   1        //Cho cot 1 = 0;
+  10   1        col_1 = 0;
+  11   1        if (row_1 == 0) key = 13;
+  12   1        if (row_2 == 0) key = 9;
+  13   1        if (row_3 == 0) key = 5;
+  14   1        if (row_4 == 0) key = 1;
+  15   1        col_1 = 1;
+  16   1        //cho cot 2 = 0;
+  17   1        col_2 = 0;
+  18   1        if (row_1 == 0) key = 14;
+  19   1        if (row_2 == 0) key = 10;
+  20   1        if (row_3 == 0) key = 6;
+  21   1        if (row_4 == 0) key = 2;
+  22   1        col_2 = 1;
+  23   1        //cho cot 3 = 0;
+  24   1        col_3 = 0;
+  25   1        if (row_1 == 0) key = 15;
+  26   1        if (row_2 == 0) key = 11;
+  27   1        if (row_3 == 0) key = 7;
+  28   1        if (row_4 == 0) key = 3;
+  29   1        col_3 = 1;
+  30   1        //cho cot 4  = 0
+  31   1        col_4 = 0;
+  32   1        if (row_1 == 0) key = 16;
+  33   1        if (row_2 == 0) key = 12;
+  34   1        if (row_3 == 0) key = 8;
+  35   1        if (row_4 == 0) key = 4;
+  36   1        col_4 = 1;
+  37   1        return key;
+  38   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     99    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,60 @@
+C51 COMPILER V9.01   MAIN                                                                  02/01/2023 17:11:48 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          
+   3          void DelayTimer2_1s()
+   4          {
+   5   1        unsigned char i;
+   6   1        TR2 = 1;
+   7   1        for(i = 0;  i < 20; i++)
+   8   1        {
+   9   2          while(!TF2);
+  10   2          TF2 = 0;
+  11   2        }
+  12   1        TR2 = 0;
+  13   1      }
+  14            
+  15          
+  16          int main(void)
+  17          {
+  18   1        //Timer2 tu dong nap lai
+  19   1        T2MOD = 0x00;
+  20   1        T2CON = 0x00;
+  21   1        
+  22   1        RCAP2H = 0x3C;
+  23   1        RCAP2L = 0xB0;
+  24   1        
+  25   1        TH2 = 0x3C;
+  26   1        TL2 = 0xB0;
+  27   1        
+  28   1        while(1)
+  29   1        {
+  30   2          P2 = ~P2;
+  31   2          DelayTimer2_1s();
+  32   2          
+  33   2          
+  34   2        }
+  35   1        
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,38 @@
+C51 COMPILER V9.01   MAIN                                                                  01/11/2023 16:55:25 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\THU_VIEN_LCD_I2C.H"
+   3          #include"..\Lib\Delay.h"
+   4          
+   5          unsigned char slave_l = 0X7E;
+   6          unsigned char slave_2 = 0X70;
+   7          
+   8          void main()
+   9          {
+  10   1        LCD_Slave(slave_l);
+  11   1        LCD_Init();
+  12   1        LCD_Gotoxy(1, 1);
+  13   1        LCD_Send_Data('A'); 
+  14   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     24    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

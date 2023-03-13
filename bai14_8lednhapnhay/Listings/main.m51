@@ -1,0 +1,143 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/14/2022  21:37:28  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\8led.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\8led.obj (8LED)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (8LED)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0047H     UNIT         ?PR?SANGDANTATDAN8LED?8LED
+            CODE    004AH     0027H     UNIT         ?PR?CHOPTATXENKE?8LED
+            CODE    0071H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0091H     000CH     UNIT         ?C_C51STARTUP
+            CODE    009DH     0008H     UNIT         ?PR?MAIN?8LED
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (8LED)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?8LED
+
+?PR?MAIN?8LED                      -----    -----
+  +--> ?PR?SANGDANTATDAN8LED?8LED
+  +--> ?PR?CHOPTATXENKE?8LED
+
+?PR?SANGDANTATDAN8LED?8LED         0008H    0001H
+  +--> ?PR?_DELAY_MS?DELAY
+
+?PR?CHOPTATXENKE?8LED              0008H    0001H
+  +--> ?PR?_DELAY_MS?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (8LED)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2022  21:37:28  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        8LED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:004AH         PUBLIC        ChopTatXenKe
+  C:009DH         PUBLIC        main
+  C:0003H         PUBLIC        SangDanTatDan8LED
+  -------         PROC          SANGDANTATDAN8LED
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         6
+  C:0003H         LINE#         7
+  C:0003H         LINE#         9
+  C:0006H         LINE#         11
+  C:0013H         LINE#         12
+  C:0013H         LINE#         13
+  C:001BH         LINE#         14
+  C:0022H         LINE#         15
+  C:0026H         LINE#         16
+  C:0029H         LINE#         17
+  C:0036H         LINE#         18
+  C:0036H         LINE#         19
+  C:003EH         LINE#         20
+  C:0045H         LINE#         21
+  C:0049H         LINE#         22
+  -------         ENDPROC       SANGDANTATDAN8LED
+  -------         PROC          CHOPTATXENKE
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:004AH         LINE#         24
+  C:004AH         LINE#         25
+  C:004AH         LINE#         27
+  C:0058H         LINE#         28
+  C:0058H         LINE#         29
+  C:005BH         LINE#         30
+  C:0062H         LINE#         31
+  C:0065H         LINE#         32
+  C:006CH         LINE#         33
+  C:0070H         LINE#         34
+  -------         ENDPROC       CHOPTATXENKE
+  -------         PROC          MAIN
+  C:009DH         LINE#         38
+  C:009DH         LINE#         39
+  C:009DH         LINE#         41
+  C:009DH         LINE#         42
+  C:009DH         LINE#         43
+  C:00A0H         LINE#         44
+  C:00A3H         LINE#         45
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        8LED
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2022  21:37:28  PAGE 3
+
+
+  C:0071H         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0071H         LINE#         5
+  C:0071H         LINE#         6
+  C:0071H         LINE#         8
+  C:007BH         LINE#         9
+  C:007BH         LINE#         10
+  C:0089H         LINE#         11
+  C:0090H         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+Program Size: data=10.0 xdata=0 code=165
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

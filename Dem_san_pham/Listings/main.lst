@@ -1,0 +1,104 @@
+C51 COMPILER V9.01   MAIN                                                                  01/26/2023 22:44:02 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <main.h>
+   2          #include <..\Lib\Delay.h>
+   3          
+   4          /* P0 noi vao acbdef
+   5             P2_0 den P_5 noi vao 123456  */
+   6          
+   7          unsigned char code code7seg[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+   8          
+   9          
+  10          void Display(unsigned int n)
+  11          {
+  12   1        unsigned char chuc_ngan, ngan, tram, chuc, donvi;
+  13   1        // eg: 12345
+  14   1        chuc_ngan = n/10000; // = 1
+  15   1        n %= 10000;          // = 2345
+  16   1        ngan = n/1000;       // = 2
+  17   1        n %= 1000;
+  18   1        tram = n/100;
+  19   1        n %= 100;
+  20   1        chuc = n/10;
+  21   1        donvi = n%10;
+  22   1        
+  23   1        /* 0 led sang || 1 led tat (vi dung cong not) */
+  24   1        P0 = code7seg[chuc_ngan];
+  25   1        P2_4 = 0;
+  26   1        Delay_ms(1);
+  27   1        P2_4 = 1; 
+  28   1        
+  29   1        P0 = code7seg[ngan];
+  30   1        P2_3 = 0;
+  31   1        Delay_ms(1);
+  32   1        P2_3 = 1;
+  33   1        
+  34   1        P0 = code7seg[tram];
+  35   1        P2_2 = 0;
+  36   1        Delay_ms(1);
+  37   1        P2_2 = 1;
+  38   1        
+  39   1        P0 = code7seg[chuc];
+  40   1        P2_1 = 0;
+  41   1        Delay_ms(1);
+  42   1        P2_1 = 1;
+  43   1        
+  44   1        P0 = code7seg[donvi];
+  45   1        P2_0 = 0;
+  46   1        Delay_ms(1);
+  47   1        P2_0 = 1;
+  48   1      }
+  49          
+  50          
+  51          int main(void)
+  52          {
+  53   1        unsigned char high, low;
+  54   1        unsigned char number;
+C51 COMPILER V9.01   MAIN                                                                  01/26/2023 22:44:02 PAGE 2   
+
+  55   1        
+  56   1        TMOD &= 0xF0;
+  57   1        TMOD |= 0x05; // COUNTER == 1
+  58   1        TR0 = 1;
+  59   1        
+  60   1        
+  61   1        while(1)
+  62   1        {
+  63   2          do
+  64   2          {
+  65   3          high = TH0;
+  66   3          low = TL0;
+  67   3          }
+  68   2          while(high != TH0);
+  69   2          
+  70   2          number = high;
+  71   2          number <<= 8;
+  72   2          number |= low;
+  73   2          
+  74   2          Display(number);
+  75   2          
+  76   2        }
+  77   1        
+  78   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    243    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

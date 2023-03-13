@@ -1,0 +1,126 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/15/2022  09:20:07  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\button.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMS
+>> IZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\button.obj (BUTTON)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (BUTTON)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0025H     UNIT         ?PR?QUETPHIMTRONGDELAY?BUTTON
+            CODE    0028H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0048H     0011H     UNIT         ?PR?MAIN?BUTTON
+            CODE    0059H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (BUTTON)
+
+
+SEGMENT                                 DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?BUTTON
+
+?PR?MAIN?BUTTON                       -----    -----
+  +--> ?PR?QUETPHIMTRONGDELAY?BUTTON
+
+?PR?QUETPHIMTRONGDELAY?BUTTON         0008H    0001H
+  +--> ?PR?_DELAY_MS?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (BUTTON)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        BUTTON
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/15/2022  09:20:07  PAGE 2
+
+
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0048H         PUBLIC        main
+  C:0003H         PUBLIC        QuetPhimTrongDelay
+  B:0090H.1       PUBLIC        button_off
+  B:0090H.0       PUBLIC        button_on
+  -------         PROC          QUETPHIMTRONGDELAY
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         6
+  C:0003H         LINE#         8
+  C:0011H         LINE#         9
+  C:0018H         LINE#         10
+  C:001BH         LINE#         11
+  C:001BH         LINE#         12
+  C:001EH         LINE#         13
+  C:0021H         LINE#         14
+  C:0021H         LINE#         15
+  C:0025H         LINE#         16
+  C:0027H         LINE#         17
+  -------         ENDPROC       QUETPHIMTRONGDELAY
+  -------         PROC          MAIN
+  C:0048H         LINE#         20
+  C:0048H         LINE#         21
+  C:004BH         LINE#         22
+  C:004BH         LINE#         23
+  C:004BH         LINE#         24
+  C:004EH         LINE#         25
+  C:004EH         LINE#         26
+  C:004EH         LINE#         27
+  C:004EH         LINE#         28
+  C:0051H         LINE#         29
+  C:0057H         LINE#         30
+  C:0057H         LINE#         31
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        BUTTON
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0028H         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0028H         LINE#         5
+  C:0028H         LINE#         6
+  C:0028H         LINE#         8
+  C:0032H         LINE#         9
+  C:0032H         LINE#         10
+  C:0040H         LINE#         11
+  C:0047H         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/15/2022  09:20:07  PAGE 3
+
+
+Program Size: data=10.0 xdata=0 code=101
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

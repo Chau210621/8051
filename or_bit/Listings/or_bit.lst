@@ -1,0 +1,60 @@
+C51 COMPILER V9.01   OR_BIT                                                                01/11/2023 16:54:52 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE OR_BIT
+OBJECT MODULE PLACED IN .\Objects\or_bit.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE or_bit.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\or
+                    -_bit.lst) TABS(2) OBJECT(.\Objects\or_bit.obj)
+
+line level    source
+
+   1          #include <REGX52.h>
+   2          
+   3          //unsigned int 2byte so duong( > 0)
+   4          void delay_ms(unsigned int t){
+   5   1        unsigned int x, y;
+   6   1        for(x = 0; x < t; x++)
+   7   1        {
+   8   2          for(y = 0; y < 123; y++);
+   9   2        }
+  10   1      }
+  11          
+  12          void main(){
+  13   1        
+  14   1        unsigned char i ; //unsigned char 1byte
+  15   1        
+  16   1        while(1)
+  17   1        {
+  18   2          P0 = 0x00;
+  19   2          for(i =0;i <8;i++)
+  20   2          {
+  21   3            delay_ms(300);
+  22   3            P0 <<= 1;
+  23   3            P0 |= 0x01;
+  24   3          } 
+  25   2          delay_ms(300);
+  26   2          
+  27   2          P0 = 0x00;
+  28   2          for(i = 0; i < 8 ; i++)
+  29   2          {
+  30   3            delay_ms(300);
+  31   3            P0 >>= 1;
+  32   3            P0 |= 0x80;
+  33   3          }
+  34   2          delay_ms(300);
+  35   2        }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: chau dd, d, LIC=----
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Develpers Kit  Version: 9.01
+Toolchain Path:  C:\Keil_v5\C51\BIN
+C Compiler:      C51.exe V9.01
+Assembler:       A51.exe V8.02
+Linker/Locator:  BL51.exe V6.22
+Library Manager: LIB51.exe V4.24
+Hex Converter:   OH51.exe V2.6
+CPU DLL:         S8051.DLL V3.72
+Dialog DLL:      DP51.DLL V2.59 
+<h2>Project:</h2>
+D:\FILE_KEIL\lcd_i2c\main.uvproj
+Project File Date:  01/11/2023
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling main.c...
+compiling Thu_Vien_LCD_I2C.c...
+compiling Delay.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  _DELAY_MS
+    MODULE:  .\Objects\Delay.obj (DELAY)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SEND_STRING?THU_VIEN_LCD_I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SEND_NUMBER?THU_VIEN_LCD_I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?DELAY
+Program Size: data=21.0 xdata=0 code=924
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

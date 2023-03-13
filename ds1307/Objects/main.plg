@@ -1,0 +1,31 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\FILE_KEIL\ds1307\main.uvproj
+Project File Date:  01/11/2023
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+compiling LCD4.c...
+..\Lib\LCD4.c(37): message C320: "Lcd - Use delay method."
+compiling Delay.c...
+compiling Soft_I2C.c...
+compiling Rtc_Ds1307.c...
+compiling LunarCalendar.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_CUSTOM_CHR?LCD4
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_WRITE_TIME?RTC_DS1307
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_WRITE_DATE?RTC_DS1307
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_WRITE_BYTES?RTC_DS1307
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_READ_BYTES?RTC_DS1307
+Program Size: data=63.3 xdata=0 code=4986
+creating hex file from ".\Objects\main"...
+".\Objects\main" - 0 Error(s), 5 Warning(s).

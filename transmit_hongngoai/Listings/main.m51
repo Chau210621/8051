@@ -1,0 +1,168 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/02/2023  18:03:21  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+                    000BH     0015H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         _BIT_GROUP_
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0029H     UNIT         ?PR?GUIBIT?MAIN
+            CODE    0829H     0022H     UNIT         ?PR?MAIN?MAIN
+            CODE    084BH     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    086BH     001DH     UNIT         ?PR?_GUIBYTE?MAIN
+            CODE    0888H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
+
+
+SEGMENT                           BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH     START    LENGTH
+------------------------------------------------------------------
+?C_C51STARTUP                  -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----      0008H    0001H
+  +--> ?PR?_GUIBYTE?MAIN
+  +--> ?PR?_DELAY_MS?DELAY
+
+?PR?_GUIBYTE?MAIN              -----    -----      0009H    0002H
+  +--> ?PR?GUIBIT?MAIN
+
+?PR?GUIBIT?MAIN                0020H.0  0000H.1    -----    -----
+  +--> ?PR?_DELAY_MS?DELAY
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/02/2023  18:03:21  PAGE 2
+
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.0       PUBLIC        P1_0
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  C:0829H         PUBLIC        main
+  C:086BH         PUBLIC        _GuiByte
+  C:0800H         PUBLIC        GuiBit
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  B:00C8H.2       PUBLIC        TR2
+  D:00C9H         PUBLIC        T2MOD
+  D:00C8H         PUBLIC        T2CON
+  -------         PROC          GUIBIT
+  B:0020H.0       SYMBOL        b
+  C:0800H         LINE#         7
+  C:0800H         LINE#         8
+  C:0800H         LINE#         9
+  C:0803H         LINE#         10
+  C:0803H         LINE#         11
+  C:0805H         LINE#         12
+  C:080CH         LINE#         13
+  C:080EH         LINE#         15
+  C:0810H         LINE#         16
+  C:0812H         LINE#         18
+  C:0814H         LINE#         19
+  C:0814H         LINE#         20
+  C:0816H         LINE#         21
+  C:081DH         LINE#         22
+  C:081FH         LINE#         24
+  C:0821H         LINE#         25
+  C:0828H         LINE#         26
+  C:0828H         LINE#         27
+  -------         ENDPROC       GUIBIT
+  -------         PROC          _GUIBYTE
+  D:0009H         SYMBOL        b
+  -------         DO            
+  D:000AH         SYMBOL        i
+  -------         ENDDO         
+  C:086BH         LINE#         29
+  C:086DH         LINE#         30
+  C:086DH         LINE#         33
+  C:0870H         LINE#         34
+  C:0870H         LINE#         35
+  C:0878H         LINE#         36
+  C:087EH         LINE#         37
+  C:0887H         LINE#         40
+  -------         ENDPROC       _GUIBYTE
+  -------         PROC          MAIN
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/02/2023  18:03:21  PAGE 3
+
+
+  D:0008H         SYMBOL        cnt
+  -------         ENDDO         
+  C:0829H         LINE#         42
+  C:0829H         LINE#         43
+  C:0829H         LINE#         46
+  C:082CH         LINE#         47
+  C:082FH         LINE#         49
+  C:0832H         LINE#         50
+  C:0835H         LINE#         52
+  C:0838H         LINE#         53
+  C:083BH         LINE#         56
+  C:083BH         LINE#         57
+  C:083BH         LINE#         58
+  C:0840H         LINE#         59
+  C:0842H         LINE#         60
+  C:0849H         LINE#         61
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:084BH         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:084BH         LINE#         5
+  C:084BH         LINE#         6
+  C:084BH         LINE#         8
+  C:0855H         LINE#         9
+  C:0855H         LINE#         10
+  C:0863H         LINE#         11
+  C:086AH         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0088H BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=12.1 xdata=0 code=151
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

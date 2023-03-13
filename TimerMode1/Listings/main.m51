@@ -1,0 +1,130 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/26/2023  20:00:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0820H     0019H     UNIT         ?PR?_DELAY_MS_TIMER0MODE1?MAIN
+            CODE    0839H     0011H     UNIT         ?PR?MAIN?MAIN
+            CODE    084AH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAY_MS_TIMER0MODE1?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0820H         PUBLIC        _Delay_ms_Timer0Mode1
+  D:00A0H         PUBLIC        P2
+  C:0839H         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/26/2023  20:00:04  PAGE 2
+
+
+  D:0089H         PUBLIC        TMOD
+  B:00A0H.0       PUBLIC        led
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          _DELAY_MS_TIMER0MODE1
+  D:0006H         SYMBOL        t
+  C:0820H         LINE#         10
+  C:0820H         LINE#         11
+  C:0820H         LINE#         13
+  C:0820H         LINE#         14
+  C:0823H         LINE#         15
+  C:0826H         LINE#         16
+  C:0828H         LINE#         17
+  C:082BH         LINE#         18
+  C:082DH         LINE#         19
+  C:082FH         LINE#         20
+  C:0834H         LINE#         21
+  C:0834H         LINE#         22
+  C:0838H         LINE#         24
+  -------         ENDPROC       _DELAY_MS_TIMER0MODE1
+  -------         PROC          MAIN
+  C:0839H         LINE#         26
+  C:0839H         LINE#         27
+  C:0839H         LINE#         30
+  C:083CH         LINE#         31
+  C:083FH         LINE#         33
+  C:083FH         LINE#         34
+  C:083FH         LINE#         36
+  C:0841H         LINE#         37
+  C:0848H         LINE#         39
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0800H         LINE#         5
+  C:0800H         LINE#         6
+  C:0800H         LINE#         8
+  C:080AH         LINE#         9
+  C:080AH         LINE#         10
+  C:0818H         LINE#         11
+  C:081FH         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?DELAY
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/26/2023  20:00:04  PAGE 3
+
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 004AH BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=89
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

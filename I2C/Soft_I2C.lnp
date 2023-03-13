@@ -1,0 +1,3 @@
+"Soft_I2C.obj" 
+TO "Soft_I2C" 
+RAMSIZE(256) 

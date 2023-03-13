@@ -1,0 +1,54 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/21/2022 10:07:00 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Delay.h"
+   3          #include"..\Lib\Keypad4x4.h"
+   4          #include"port.h"
+   5          
+   6          unsigned char code Code7seg[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+   7          
+   8          
+   9          void main()
+  10          {
+  11   1        unsigned char key, tmp, donvi, chuc;
+  12   1        while(1)
+  13   1        {
+  14   2          key = KeyPress();
+  15   2          if(key!=0)
+  16   2          {
+  17   3            tmp = key;
+  18   3            donvi = tmp%10;
+  19   3            chuc = tmp/10;
+  20   3          }
+  21   2          led = Code7seg[donvi];
+  22   2          port_1 = 0;
+  23   2          delay(1);
+  24   2          port_1 = 1;
+  25   2          led = Code7seg[chuc];
+  26   2          port_2 = 0;
+  27   2          delay(1);
+  28   2          port_2 = 1;
+  29   2        }
+  30   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     60    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

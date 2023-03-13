@@ -1,0 +1,64 @@
+C51 COMPILER V9.01   MAIN                                                                  02/01/2023 20:51:53 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          
+   3          
+   4          
+   5          int main(void)
+   6          {
+   7   1        T2CON = 0x08;  
+   8   1        T2MOD = 0x00;
+   9   1        
+  10   1        ET2 =1;
+  11   1        EA = 1;
+  12   1        
+  13   1        RCAP2H = 0x3C;
+  14   1        RCAP2L = 0XB0;
+  15   1        
+  16   1        TH2 = 0x3C;
+  17   1        TL2 = 0XB0;
+  18   1        
+  19   1        P2 = 0x00;
+  20   1        while(1)
+  21   1        {
+  22   2          
+  23   2        }
+  24   1        
+  25   1      }
+  26          
+  27          void InterrupTimer2() interrupt 5
+  28          {
+  29   1        if(1 == TF2)
+  30   1        {
+  31   2          TR2 = 0;
+  32   2          TF2 = 0;
+  33   2          P2 ++;
+  34   2        }else if(1 == EXF2)
+  35   1        {
+  36   2          TR2 = 1;
+  37   2          EXF2 = 0;
+  38   2        }
+  39   1        
+  40   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     44    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

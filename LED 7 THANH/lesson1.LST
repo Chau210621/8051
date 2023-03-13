@@ -1,0 +1,78 @@
+C51 COMPILER V9.01   LESSON1                                                               05/30/2022 09:11:30 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LESSON1
+OBJECT MODULE PLACED IN lesson1.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE lesson1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<stdio.h>
+   3          unsigned char M[10]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+   4          unsigned char donvi,chuc,tram,nghin;
+   5          unsigned int i,num=0;
+   6          sbit Q1=P0^0;
+   7          sbit Q2=P0^1;
+   8          sbit Q3=P0^2;
+   9          sbit Q4=P0^3;
+  10          
+  11          void delay (unsigned int n)
+  12          { long int i;
+  13   1              for (i=0;i<=n;i++);
+  14   1      }
+  15          void DISPLAY (unsigned int n)
+  16          {for (i=0;i<=n;i++);
+  17   1              { Q1=1;
+  18   2                      P2=M[donvi];
+  19   2                      delay(1000);
+  20   2                      Q1=0;
+  21   2                      
+  22   2                      Q2=1;
+  23   2                      P2=M[chuc];
+  24   2                      delay(1000);
+  25   2                      Q2=0;
+  26   2                      
+  27   2                      Q3=1;
+  28   2                      P2=M[tram];
+  29   2                      delay(1000);
+  30   2                      Q3=0;
+  31   2                      
+  32   2                      Q4=1;
+  33   2                      P2=M[nghin];
+  34   2                      delay(1000);
+  35   2                      Q4=0;
+  36   2              }
+  37   1      }       
+  38          void main (void)
+  39          { while(1)
+  40   1              { nghin=num/1000;
+  41   2                      tram=(num%1000)/100;
+  42   2                      chuc=((num%1000)%100)/10;
+  43   2                      donvi=((num%1000)%100)%10;
+  44   2                      DISPLAY(200);
+  45   2      if(num<1206){
+  46   3                      num++;
+  47   3      }
+  48   2      else
+  49   2      {
+  50   3              num=1206;
+  51   3      }
+  52   2      }       
+  53   1      }
+
+
+C51 COMPILER V9.01   LESSON1                                                               05/30/2022 09:11:30 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    257    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

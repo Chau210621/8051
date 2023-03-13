@@ -1,0 +1,269 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/30/2022 15:19:45 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Delay.h"
+   3          
+   4          /*-----------------------------*-
+   5            Khai bao cac lenh cua lcd
+   6          *-------------------------------*/
+   7          #define _LCD_CLEAR        1       
+   8          #define _LCD_RETURN_HOME    2
+   9          #define _LCD_ENTRY_MODE     6
+  10          #define _LCD_TURN_OFF     8
+  11          #define _LCD_TURN_ON      12
+  12          #define _LCD_CURSOR_OFF     12    
+  13          #define _LCD_UNDERLINE_ON   14
+  14          #define _LCD_BLINK_CURSOR_ON  15
+  15          #define _LCD_MOVE_CURSOR_LEFT 16
+  16          #define _LCD_MOVE_CURSOR_RIGHT  17
+  17          #define _LCD_SHIFT_LEFT     24
+  18          #define _LCD_SHIFT_RIGHT    28
+  19          #define _LCD_4BIT_1LINE_5x7FONT 0x20
+  20          #define _LCD_4BIT_2LINE_5x7FONT 0x28
+  21          #define _LCD_8BIT_1LINE_5x7FONT 0x30
+  22          #define _LCD_8BIT_2LINE_5x7FONT 0x38
+  23          #define _LCD_FIRST_ROW      128
+  24          #define _LCD_SECOND_ROW     192
+  25          
+  26          /*------------------------------------*
+  27                        START LINE
+  28          *---------------------------------------*/
+  29          void LCD_Write_High_Bit(unsigned char b);
+  30          void LCD_Write_Low_Bit(unsigned char b);
+  31          void Lcd_Delay_us(unsigned char t);
+  32          void Check_Busy();
+  33          void LCD_Init();
+  34          void Lcd_Cmd(unsigned char cmd);
+  35          
+  36          /*-----------------------*
+  37                  END LINE
+  38          *-------------------------*/
+  39          
+  40          /* Khai bao chan cho lcd */
+  41          
+  42          sbit LCD_RS = P2^0;
+  43          sbit LCD_RW = P2^1;
+  44          sbit LCD_E = P2^2;
+  45          sbit LCD_D4 = P2^4;
+  46          sbit LCD_D5 = P2^5;
+  47          sbit LCD_D6 = P2^6;
+  48          sbit LCD_D7 = P2^7;
+  49          
+  50          void LCD_Write_High_Bit(unsigned char b)
+  51          {
+  52   1        /* giu nguyen bit trong cao nhat theo thu tu cac bit khac bang 0 */
+  53   1        
+  54   1        LCD_D7 = b & 0x80;
+C51 COMPILER V9.60.0.0   MAIN                                                              12/30/2022 15:19:45 PAGE 2   
+
+  55   1        LCD_D6 = b & 0x40;
+  56   1        LCD_D5 = b & 0x20;
+  57   1        LCD_D4 = b & 0x10;
+  58   1                  
+  59   1      }
+  60          
+  61          /* LCD write 4 low order bit */
+  62          
+  63          void LCD_Write_Low_Bit(unsigned char b)
+  64          {
+  65   1        /* giu nguyen cac bit trong so thap theo thu tu cac bit khac bang 0 */
+  66   1        
+  67   1        LCD_D7 = b & 0x08;
+  68   1        LCD_D6 = b & 0x04;
+  69   1        LCD_D5 = b & 0x02;
+  70   1        LCD_D4 = b & 0x01;
+  71   1        
+  72   1      }
+  73          
+  74          /* --------------------------*-
+  75             Delay micros
+  76           -------------------------------*/
+  77          void Lcd_Delay_us(unsigned char t)
+  78          {
+  79   1        while(t--);
+  80   1      }
+  81          
+  82          /* Kiem tra co Busy Flag */
+  83          
+  84          void Check_Busy()
+  85          {
+  86   1        bit Busy_Flag;
+  87   1        LCD_D7 = 1;
+  88   1        LCD_RS = 0;
+  89   1        LCD_RW = 1; 
+  90   1        do
+  91   1        {
+  92   2          /* Doc 4 bit cao */
+  93   2          
+  94   2          LCD_E = 0;
+  95   2          LCD_E = 1;
+  96   2          Busy_Flag = LCD_D7;
+  97   2          /* Doc 4 bit thap */
+  98   2          
+  99   2          LCD_E = 0;
+ 100   2          LCD_E = 1;
+ 101   2          
+ 102   2        }while(Busy_Flag);
+ 103   1        LCD_E = 0;
+ 104   1      }
+ 105          
+ 106          /* Khoi tao man hinh LCD */
+ 107          
+ 108          void LCD_Init()
+ 109          {
+ 110   1        LCD_RS = 0;
+ 111   1        LCD_E = 0;
+ 112   1        LCD_RW = 0;
+ 113   1        delay(20);  /* Delay 20 ms */
+ 114   1        
+ 115   1        LCD_Write_Low_Bit(0x03);
+ 116   1        LCD_E = 1;
+C51 COMPILER V9.60.0.0   MAIN                                                              12/30/2022 15:19:45 PAGE 3   
+
+ 117   1        LCD_E = 0;
+ 118   1        delay(5); /* Delay 5ms */
+ 119   1        
+ 120   1        LCD_Write_Low_Bit(0x03);
+ 121   1        LCD_E = 1;
+ 122   1        LCD_E = 0;
+ 123   1        Lcd_Delay_us(100);
+ 124   1        
+ 125   1        LCD_Write_Low_Bit(0x03);
+ 126   1        LCD_E = 1;
+ 127   1        LCD_E = 0;
+ 128   1        Check_Busy();
+ 129   1        
+ 130   1        LCD_Write_Low_Bit(0x02);
+ 131   1        LCD_E = 1;
+ 132   1        LCD_E = 0;
+ 133   1        delay(1); 
+ 134   1        
+ 135   1        /* gui lenh khoi tao man hinh */
+ 136   1        Lcd_Cmd(_LCD_4BIT_2LINE_5x7FONT);
+ 137   1        Lcd_Cmd(_LCD_TURN_ON);
+ 138   1        Lcd_Cmd(_LCD_CLEAR);
+ 139   1        Lcd_Cmd(_LCD_ENTRY_MODE);
+ 140   1        
+ 141   1      }
+ 142          
+ 143          /*----------------------*-
+ 144            Gui lenh cho LCD
+ 145          -*-----------------------*/
+ 146          void Lcd_Cmd(unsigned char cmd)
+ 147          {
+ 148   1        LCD_RW = 0;
+ 149   1        LCD_RS = 0;
+ 150   1        
+ 151   1        /* 4 bit cao */
+ 152   1        LCD_Write_High_Bit(cmd); 
+ 153   1        LCD_E = 1;
+ 154   1        LCD_E = 0;
+ 155   1        
+ 156   1        /* 4 bit thap */
+ 157   1        LCD_Write_Low_Bit(cmd);
+ 158   1        LCD_E = 1;
+ 159   1        LCD_E = 0;
+ 160   1        
+ 161   1        Check_Busy();
+ 162   1      }
+ 163            
+ 164          /* ---------------------
+ 165            switch(cmd)
+ 166            {
+ 167              case _LCD_CLEAR:
+ 168              case _LCD_RETURN_HOME:
+ 169                delay(2);
+ 170                break;
+ 171              default:
+ 172                Lcd_Delay_us(37);
+ 173                break;
+ 174            }
+ 175          -------------------------*/
+ 176          
+ 177          
+ 178          /*----------------------------*-
+C51 COMPILER V9.60.0.0   MAIN                                                              12/30/2022 15:19:45 PAGE 4   
+
+ 179            Gui du lieu 1 ky tu cho LCD
+ 180          *-----------------------------*/
+ 181          void Lcd_Chr_Cp(unsigned char achar)
+ 182          {
+ 183   1        LCD_RW = 0;
+ 184   1        LCD_RS =  1;
+ 185   1        LCD_Write_High_Bit(achar);
+ 186   1        LCD_E = 1;
+ 187   1        LCD_E = 0;
+ 188   1        
+ 189   1        LCD_Write_Low_Bit(achar);
+ 190   1        LCD_E = 1;
+ 191   1        LCD_E = 0;
+ 192   1        
+ 193   1        Check_Busy();
+ 194   1      }
+ 195          
+ 196          /*-------------------------------* 
+ 197            Gui 1 chuoi kys tu cho LCD
+ 198          *--------------------------------*/
+ 199          void Lcd_SetCursor(unsigned char col, unsigned char row,unsigned char achar)
+ 200          {
+ 201   1        unsigned char Position;
+ 202   1        Position = (col == 1 ? 0x080 : 0xC0);
+ 203   1        Position += (row - 1);
+ 204   1        Lcd_Cmd(Position);
+ 205   1        Lcd_Chr_Cp(achar);
+ 206   1      }
+ 207          
+ 208          void Lcd_Out_Cp(unsigned char * str)
+ 209          {
+ 210   1        unsigned char i = 0;
+ 211   1        while(str[i])
+ 212   1        {
+ 213   2          Lcd_Chr_Cp(str[i]);
+ 214   2          i++;
+ 215   2        }
+ 216   1      }
+ 217          
+ 218          void Lcd_Out(unsigned char row, unsigned char column, 
+ 219            unsigned char* text)
+ 220          {
+ 221   1        unsigned char add;
+ 222   1        add = (row==1?0x80:0xC0);
+ 223   1        add += (column - 1);
+ 224   1        Lcd_Cmd(add);
+ 225   1        Lcd_Out_Cp(text); 
+ 226   1      }
+ 227          
+ 228          void main()
+ 229          {
+ 230   1        
+ 231   1          LCD_Init();
+ 232   1      
+ 233   1          Lcd_Chr_Cp('A');
+ 234   1          Lcd_SetCursor(2, 1, 'b');
+ 235   1        
+ 236   1        
+ 237   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.60.0.0   MAIN                                                              12/30/2022 15:19:45 PAGE 5   
+
+   CODE SIZE        =    291    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

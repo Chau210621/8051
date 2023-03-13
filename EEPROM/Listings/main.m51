@@ -1,0 +1,231 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/07/2023  21:09:39  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0031H     UNIT         ?PR?_EEPROM_25LCXXX_WRITE?MAIN
+            CODE    0831H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0851H     001EH     UNIT         ?PR?MAIN?MAIN
+            CODE    086FH     001EH     UNIT         ?PR?_EEPROM_25LCXXX_READ?MAIN
+            CODE    088DH     0019H     UNIT         ?PR?_SOFT_SPI_WRITE?MAIN
+            CODE    08A6H     0015H     UNIT         ?PR?SOFT_SPI_READ?MAIN
+            CODE    08BBH     0011H     UNIT         ?PR?EEPROM_25LCXXX_WIP?MAIN
+            CODE    08CCH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08D8H     0007H     UNIT         ?PR?SOFT_SPI_INIT?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
+
+
+SEGMENT                                  DATA_GROUP 
+  +--> CALLED SEGMENT                  START    LENGTH
+------------------------------------------------------
+?C_C51STARTUP                          -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                          -----    -----
+  +--> ?PR?SOFT_SPI_INIT?MAIN
+  +--> ?PR?_EEPROM_25LCXXX_WRITE?MAIN
+  +--> ?PR?_EEPROM_25LCXXX_READ?MAIN
+
+?PR?_EEPROM_25LCXXX_WRITE?MAIN         0008H    0003H
+  +--> ?PR?_SOFT_SPI_WRITE?MAIN
+  +--> ?PR?EEPROM_25LCXXX_WIP?MAIN
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/07/2023  21:09:39  PAGE 2
+
+
+?PR?EEPROM_25LCXXX_WIP?MAIN            -----    -----
+  +--> ?PR?_SOFT_SPI_WRITE?MAIN
+  +--> ?PR?SOFT_SPI_READ?MAIN
+
+?PR?_EEPROM_25LCXXX_READ?MAIN          0008H    0002H
+  +--> ?PR?_SOFT_SPI_WRITE?MAIN
+  +--> ?PR?SOFT_SPI_READ?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:00A0H.2       PUBLIC        SPI_MISO
+  B:00A0H.1       PUBLIC        SPI_MOSI
+  C:0851H         PUBLIC        main
+  C:08A6H         PUBLIC        Soft_SPI_Read
+  C:088DH         PUBLIC        _Soft_SPI_Write
+  C:08BBH         PUBLIC        EEPROM_25LCxxx_WIP
+  C:08D8H         PUBLIC        Soft_SPI_Init
+  B:00A0H.3       PUBLIC        SPI_CS
+  C:086FH         PUBLIC        _EEPROM_25LCxxx_Read
+  C:0800H         PUBLIC        _EEPROM_25LCxxx_Write
+  B:00A0H.0       PUBLIC        SPI_SCLK
+  -------         PROC          MAIN
+  C:0851H         LINE#         16
+  C:0851H         LINE#         17
+  C:0851H         LINE#         18
+  C:0854H         LINE#         20
+  C:085CH         LINE#         21
+  C:0865H         LINE#         23
+  C:086DH         LINE#         25
+  C:086DH         LINE#         26
+  C:086DH         LINE#         28
+  -------         ENDPROC       MAIN
+  -------         PROC          _EEPROM_25LCXXX_WRITE
+  D:0008H         SYMBOL        add
+  D:000AH         SYMBOL        b
+  C:0800H         LINE#         32
+  C:0806H         LINE#         33
+  C:0806H         LINE#         34
+  C:0808H         LINE#         35
+  C:080DH         LINE#         36
+  C:080FH         LINE#         38
+  C:0811H         LINE#         39
+  C:0816H         LINE#         44
+  C:081CH         LINE#         47
+  C:0823H         LINE#         50
+  C:0828H         LINE#         51
+  C:082AH         LINE#         53
+  C:0830H         LINE#         54
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/07/2023  21:09:39  PAGE 3
+
+
+  -------         ENDPROC       _EEPROM_25LCXXX_WRITE
+  -------         PROC          SOFT_SPI_INIT
+  C:08D8H         LINE#         56
+  C:08D8H         LINE#         57
+  C:08D8H         LINE#         58
+  C:08DAH         LINE#         59
+  C:08DCH         LINE#         60
+  C:08DEH         LINE#         62
+  -------         ENDPROC       SOFT_SPI_INIT
+  -------         PROC          EEPROM_25LCXXX_WIP
+  -------         DO            
+  D:0007H         SYMBOL        result
+  -------         ENDDO         
+  C:08BBH         LINE#         65
+  C:08BBH         LINE#         66
+  C:08BBH         LINE#         69
+  C:08BDH         LINE#         70
+  C:08C2H         LINE#         71
+  C:08C5H         LINE#         72
+  C:08C7H         LINE#         73
+  C:08CBH         LINE#         75
+  -------         ENDPROC       EEPROM_25LCXXX_WIP
+  -------         PROC          _EEPROM_25LCXXX_READ
+  D:0008H         SYMBOL        add
+  -------         DO            
+  D:0007H         SYMBOL        b
+  -------         ENDDO         
+  C:086FH         LINE#         77
+  C:0873H         LINE#         78
+  C:0873H         LINE#         80
+  C:0875H         LINE#         81
+  C:087AH         LINE#         82
+  C:0880H         LINE#         83
+  C:0887H         LINE#         85
+  C:088AH         LINE#         87
+  C:088CH         LINE#         90
+  C:088CH         LINE#         91
+  -------         ENDPROC       _EEPROM_25LCXXX_READ
+  -------         PROC          _SOFT_SPI_WRITE
+  D:0007H         SYMBOL        b
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:088DH         LINE#         93
+  C:088DH         LINE#         94
+  C:088DH         LINE#         97
+  C:088FH         LINE#         98
+  C:088FH         LINE#         99
+  C:0893H         LINE#         100
+  C:0897H         LINE#         102
+  C:0899H         LINE#         104
+  C:089BH         LINE#         105
+  C:089FH         LINE#         106
+  C:08A1H         LINE#         108
+  C:08A5H         LINE#         109
+  -------         ENDPROC       _SOFT_SPI_WRITE
+  -------         PROC          SOFT_SPI_READ
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/07/2023  21:09:39  PAGE 4
+
+
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0007H         SYMBOL        b
+  -------         ENDDO         
+  C:08A6H         LINE#         111
+  C:08A6H         LINE#         112
+  C:08A6H         LINE#         115
+  C:08A8H         LINE#         116
+  C:08A8H         LINE#         117
+  C:08ACH         LINE#         118
+  C:08AEH         LINE#         119
+  C:08B1H         LINE#         120
+  C:08B4H         LINE#         121
+  C:08B6H         LINE#         123
+  C:08BAH         LINE#         125
+  C:08BAH         LINE#         126
+  -------         ENDPROC       SOFT_SPI_READ
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0831H         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0831H         LINE#         5
+  C:0831H         LINE#         6
+  C:0831H         LINE#         8
+  C:083BH         LINE#         9
+  C:083BH         LINE#         10
+  C:0849H         LINE#         11
+  C:0850H         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?DELAY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00D3H BYTE (10%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=226
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

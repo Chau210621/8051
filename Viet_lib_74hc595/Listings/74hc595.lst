@@ -1,0 +1,49 @@
+C51 COMPILER V9.60.0.0   74HC595                                                           12/22/2022 14:45:32 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 74HC595
+OBJECT MODULE PLACED IN .\Objects\74hc595.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Lib\74hc595.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\74hc595.lst) TABS(2) OBJECT(.\Objects\74hc595.obj)
+
+line level    source
+
+   1          #include"74hc595.h"
+   2          #include"main.h"
+   3          
+   4          
+   5          #define pin_clock P2_0
+   6          #define pin_data P2_1
+   7          #define pin_latch P2_2
+   8          
+   9          void ShiftOut(unsigned char *p, unsigned char n)
+  10          {
+  11   1        unsigned char i, b, j;
+  12   1        for(j = 0; j < n; j++)
+  13   1        {
+  14   2          b = *(p+n-j-1);//lay tu phan tu cao nhat trong mang
+  15   2          
+  16   2          for(i = 0; i < 8; i++)
+  17   2          {
+  18   3            pin_data = b & (0x80>>i);//Lay tung bit cao nhat xuat ra truoc
+  19   3            pin_clock = 0;
+  20   3            pin_clock = 1;
+  21   3          }
+  22   2        }
+  23   1        pin_latch = 0;
+  24   1        pin_latch = 1;
+  25   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    103    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

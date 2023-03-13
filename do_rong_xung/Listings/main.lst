@@ -1,0 +1,78 @@
+C51 COMPILER V9.01   MAIN                                                                  02/01/2023 12:50:31 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\LCD4.h"
+   3          #include"..\Lib\Delay.h"
+   4          
+   5          int main(void)
+   6          {
+   7   1        unsigned int t,f;
+   8   1        Lcd_Init();
+   9   1        Lcd_Out(1, 1, "T = ");
+  10   1        Lcd_Out(2, 1, "f = ");
+  11   1        
+  12   1        TMOD &= 0xF0;
+  13   1        TMOD |= 0x09;  //GATE = 1 , MODE 1
+  14   1        
+  15   1        
+  16   1        
+  17   1        while(1)
+  18   1        {
+  19   2          TH0 = 0;
+  20   2          TL0 = 0;
+  21   2          
+  22   2          while(INT0); // DOI INT MUC 0 ROI BAT DAU TIMER(D0)
+  23   2          while(!INT0); // BO QUA MUC 0
+  24   2          TR0 = 1; // timer bat dau chay
+  25   2          while(INT0); 
+  26   2          TR0 = 0;
+  27   2          
+  28   2          t = TH0;
+  29   2          t <<= 8;
+  30   2          
+  31   2          t |= TL0;
+  32   2          t *= 2;
+  33   2          Lcd_Chr(1, 5, t/10000 + 0x30);
+  34   2          Lcd_Chr_Cp(t%10000/1000 + 0x30);
+  35   2          Lcd_Chr_Cp(t%1000/100 + 0x30);
+  36   2          Lcd_Chr_Cp(t%100/10 + 0x30);
+  37   2          Lcd_Chr_Cp(t%10 + 0x30);
+  38   2          
+  39   2          f = 1000000/t; // 1/microS >> MHZ  /1000000/T >> Hz
+  40   2          Lcd_Chr(2, 5, t/10000 + 0x30);
+  41   2          Lcd_Chr_Cp(f%10000/1000 + 0x30);
+  42   2          Lcd_Chr_Cp(f%1000/100 + 0x30);
+  43   2          Lcd_Chr_Cp(f%100/10 + 0x30);
+  44   2          Lcd_Chr_Cp(f%10 + 0x30);
+  45   2          
+  46   2        }
+  47   1        
+  48   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    376    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  02/01/2023 12:50:31 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

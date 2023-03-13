@@ -1,0 +1,454 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/17/2023  15:35:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Soft_I2C.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\L
+>> istings\main.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Soft_I2C.obj (SOFT_I2C)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            DATA    0012H     0001H     UNIT         ?DT?MAIN
+                    0013H     000DH                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         _BIT_GROUP_
+            BIT     0020H.2   0000H.1   UNIT         ?BI?SOFT_I2C_READ?SOFT_I2C
+                    0020H.3   0000H.5                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0010H                  *** GAP ***
+            CODE    0013H     0003H     ABSOLUTE     
+                    0016H     07EAH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0059H     UNIT         ?PR?_LCD_WRITE_CMD?MAIN
+            CODE    08E5H     0050H     UNIT         ?PR?ISR1?MAIN
+            CODE    0935H     0036H     UNIT         ?PR?_LCD_WRITE_DATA?MAIN
+            CODE    096BH     0030H     UNIT         ?PR?_LCD_GOTOXY?MAIN
+            CODE    099BH     0025H     UNIT         ?PR?_LCD_WRITE_STRING?MAIN
+            CODE    09C0H     0023H     UNIT         ?PR?SOFT_I2C_READ?SOFT_I2C
+            CODE    09E3H     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    0A03H     001EH     UNIT         ?PR?MAIN?MAIN
+            CODE    0A21H     001AH     UNIT         ?CO?MAIN
+            CODE    0A3BH     0019H     UNIT         ?PR?LCD_INIT?MAIN
+            CODE    0A54H     0019H     UNIT         ?C?LIB_CODE
+            CODE    0A6DH     0016H     UNIT         ?PR?_SOFT_I2C_WRITE?SOFT_I2C
+            CODE    0A83H     000DH     UNIT         ?PR?SOFT_I2C_GET_ACK?SOFT_I2C
+            CODE    0A90H     000CH     UNIT         ?PR?LCD_CLEAR?MAIN
+            CODE    0A9CH     0007H     UNIT         ?PR?SOFT_I2C_START?SOFT_I2C
+            CODE    0AA3H     0007H     UNIT         ?PR?SOFT_I2C_ACK?SOFT_I2C
+            CODE    0AAAH     0007H     UNIT         ?PR?SOFT_I2C_NAK?SOFT_I2C
+            CODE    0AB1H     0007H     UNIT         ?PR?SOFT_I2C_STOP?SOFT_I2C
+            CODE    0AB8H     0005H     UNIT         ?PR?SOFT_I2C_INIT?SOFT_I2C
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 2
+
+
+            CODE    0ABDH     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
+
+
+SEGMENT                                  BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH     START    LENGTH
+-------------------------------------------------------------------------
+?PR?ISR1?MAIN                         -----    -----      -----    -----
+  +--> ?PR?LCD_CLEAR?MAIN
+  +--> ?PR?_LCD_GOTOXY?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_LCD_WRITE_STRING?MAIN
+  +--> ?PR?_DELAY_MS?DELAY
+
+?PR?LCD_CLEAR?MAIN                    -----    -----      -----    -----
+  +--> ?PR?_LCD_WRITE_CMD?MAIN
+  +--> ?PR?_DELAY_MS?DELAY
+
+?PR?_LCD_WRITE_CMD?MAIN               -----    -----      000FH    0002H
+  +--> ?PR?SOFT_I2C_START?SOFT_I2C
+  +--> ?PR?_SOFT_I2C_WRITE?SOFT_I2C
+  +--> ?PR?_DELAY_MS?DELAY
+  +--> ?PR?SOFT_I2C_STOP?SOFT_I2C
+
+?PR?_SOFT_I2C_WRITE?SOFT_I2C          -----    -----      -----    -----
+  +--> ?PR?SOFT_I2C_GET_ACK?SOFT_I2C
+
+?PR?SOFT_I2C_GET_ACK?SOFT_I2C         0020H.1  0000H.1    -----    -----
+
+?PR?_LCD_GOTOXY?MAIN                  -----    -----      000DH    0002H
+  +--> ?PR?_LCD_WRITE_CMD?MAIN
+
+?PR?_LCD_WRITE_STRING?MAIN            -----    -----      000DH    0003H
+  +--> ?PR?_LCD_WRITE_DATA?MAIN
+
+?PR?_LCD_WRITE_DATA?MAIN              -----    -----      0010H    0002H
+  +--> ?PR?SOFT_I2C_START?SOFT_I2C
+  +--> ?PR?_SOFT_I2C_WRITE?SOFT_I2C
+  +--> ?PR?SOFT_I2C_STOP?SOFT_I2C
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                         -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                         -----    -----      -----    -----
+  +--> ?PR?LCD_INIT?MAIN
+  +--> ?PR?_LCD_GOTOXY?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_LCD_WRITE_STRING?MAIN
+
+?PR?LCD_INIT?MAIN                     -----    -----      -----    -----
+  +--> ?PR?_LCD_WRITE_CMD?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 3
+
+
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0090H.4       PUBLIC        LED1
+  B:0090H.5       PUBLIC        LED2
+  B:0090H.6       PUBLIC        LED3
+  B:0090H.7       PUBLIC        LED4
+  C:0A3BH         PUBLIC        Lcd_Init
+  D:00A8H         PUBLIC        IE
+  C:08E5H         PUBLIC        ISR1
+  C:0A03H         PUBLIC        main
+  D:0012H         PUBLIC        slave_add
+  C:0973H         PUBLIC        _LCD_Gotoxy
+  B:0088H.2       PUBLIC        IT1
+  C:0A90H         PUBLIC        Lcd_Clear
+  C:099BH         PUBLIC        _Lcd_Write_String
+  C:0935H         PUBLIC        _Lcd_Write_Data
+  C:088CH         PUBLIC        _Lcd_Write_Cmd
+  -------         PROC          _LCD_WRITE_CMD
+  D:0007H         SYMBOL        cmd
+  -------         DO            
+  D:000FH         SYMBOL        cmd_l
+  D:0010H         SYMBOL        cmd_h
+  -------         ENDDO         
+  C:088CH         LINE#         10
+  C:088CH         LINE#         11
+  C:088CH         LINE#         13
+  C:0892H         LINE#         14
+  C:0897H         LINE#         20
+  C:089AH         LINE#         21
+  C:089FH         LINE#         22
+  C:08A6H         LINE#         23
+  C:08AEH         LINE#         24
+  C:08B5H         LINE#         25
+  C:08BDH         LINE#         26
+  C:08C4H         LINE#         27
+  C:08CCH         LINE#         28
+  C:08D3H         LINE#         29
+  C:08DBH         LINE#         30
+  C:08E2H         LINE#         31
+  -------         ENDPROC       _LCD_WRITE_CMD
+  -------         PROC          _LCD_WRITE_DATA
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0010H         SYMBOL        dat_l
+  D:0011H         SYMBOL        dat_h
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 4
+
+
+  -------         ENDDO         
+  C:0935H         LINE#         34
+  C:0935H         LINE#         35
+  C:0935H         LINE#         37
+  C:093BH         LINE#         38
+  C:0940H         LINE#         40
+  C:0943H         LINE#         41
+  C:0948H         LINE#         42
+  C:0950H         LINE#         43
+  C:0958H         LINE#         44
+  C:0960H         LINE#         45
+  C:0968H         LINE#         46
+  -------         ENDPROC       _LCD_WRITE_DATA
+  -------         PROC          _LCD_WRITE_STRING
+  D:000DH         SYMBOL        p
+  C:099BH         LINE#         49
+  C:09A1H         LINE#         50
+  C:09A1H         LINE#         51
+  C:09ACH         LINE#         52
+  C:09ACH         LINE#         53
+  C:09BDH         LINE#         54
+  C:09BFH         LINE#         56
+  -------         ENDPROC       _LCD_WRITE_STRING
+  -------         PROC          LCD_CLEAR
+  C:0A90H         LINE#         58
+  C:0A90H         LINE#         59
+  C:0A90H         LINE#         60
+  C:0A95H         LINE#         61
+  -------         ENDPROC       LCD_CLEAR
+  -------         PROC          LCD_INIT
+  C:0A3BH         LINE#         64
+  C:0A3BH         LINE#         65
+  C:0A3BH         LINE#         66
+  C:0A40H         LINE#         67
+  C:0A45H         LINE#         68
+  C:0A4AH         LINE#         69
+  C:0A4FH         LINE#         70
+  -------         ENDPROC       LCD_INIT
+  -------         PROC          L?0016
+  -------         ENDPROC       L?0016
+  -------         PROC          _LCD_GOTOXY
+  D:0006H         SYMBOL        col
+  D:0004H         SYMBOL        row
+  -------         DO            
+  D:000DH         SYMBOL        pos_Addr
+  -------         ENDDO         
+  C:0973H         LINE#         73
+  C:0973H         LINE#         74
+  C:0973H         LINE#         76
+  C:0979H         LINE#         77
+  C:0979H         LINE#         78
+  C:0987H         LINE#         79
+  C:0989H         LINE#         81
+  C:0989H         LINE#         82
+  C:0996H         LINE#         83
+  C:0996H         LINE#         84
+  -------         ENDPROC       _LCD_GOTOXY
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 5
+
+
+  -------         PROC          MAIN
+  C:0A03H         LINE#         89
+  C:0A03H         LINE#         90
+  C:0A03H         LINE#         92
+  C:0A06H         LINE#         94
+  C:0A08H         LINE#         95
+  C:0A10H         LINE#         96
+  C:0A13H         LINE#         97
+  C:0A16H         LINE#         98
+  C:0A1FH         LINE#         99
+  C:0A1FH         LINE#         100
+  C:0A1FH         LINE#         103
+  -------         ENDPROC       MAIN
+  -------         PROC          ISR1
+  C:08E5H         LINE#         118
+  C:0902H         LINE#         120
+  C:0904H         LINE#         121
+  C:0907H         LINE#         122
+  C:090AH         LINE#         123
+  C:0913H         LINE#         124
+  C:091AH         LINE#         125
+  -------         ENDPROC       ISR1
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SOFT_I2C
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0080H.7       PUBLIC        SOFT_I2C_SDA
+  B:0080H.6       PUBLIC        SOFT_I2C_SCL
+  C:09C0H         PUBLIC        Soft_I2c_Read
+  C:0A6DH         PUBLIC        _Soft_I2c_Write
+  C:0AA3H         PUBLIC        Soft_I2c_Ack
+  C:0A9CH         PUBLIC        Soft_I2c_Start
+  C:0A83H         PUBLIC        Soft_I2c_Get_Ack
+  C:0AB8H         PUBLIC        Soft_I2c_Init
+  C:0AAAH         PUBLIC        Soft_I2c_Nak
+  C:0AB1H         PUBLIC        Soft_I2c_Stop
+  -------         PROC          SOFT_I2C_INIT
+  C:0AB8H         LINE#         40
+  C:0AB8H         LINE#         41
+  C:0AB8H         LINE#         42
+  C:0ABAH         LINE#         43
+  C:0ABCH         LINE#         44
+  -------         ENDPROC       SOFT_I2C_INIT
+  -------         PROC          SOFT_I2C_START
+  C:0A9CH         LINE#         49
+  C:0A9CH         LINE#         50
+  C:0A9CH         LINE#         51
+  C:0A9EH         LINE#         53
+  C:0AA0H         LINE#         55
+  C:0AA2H         LINE#         56
+  -------         ENDPROC       SOFT_I2C_START
+  -------         PROC          SOFT_I2C_GET_ACK
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 6
+
+
+  B:0020H.1       SYMBOL        result
+  -------         ENDDO         
+  C:0A83H         LINE#         64
+  C:0A83H         LINE#         65
+  C:0A83H         LINE#         67
+  C:0A85H         LINE#         69
+  C:0A87H         LINE#         71
+  C:0A8BH         LINE#         72
+  C:0A8DH         LINE#         73
+  C:0A8FH         LINE#         74
+  -------         ENDPROC       SOFT_I2C_GET_ACK
+  -------         PROC          _SOFT_I2C_WRITE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0A6DH         LINE#         82
+  C:0A6DH         LINE#         83
+  C:0A6DH         LINE#         85
+  C:0A6FH         LINE#         86
+  C:0A6FH         LINE#         87
+  C:0A73H         LINE#         88
+  C:0A75H         LINE#         90
+  C:0A77H         LINE#         91
+  C:0A7BH         LINE#         92
+  C:0A7FH         LINE#         93
+  C:0A82H         LINE#         94
+  -------         ENDPROC       _SOFT_I2C_WRITE
+  -------         PROC          SOFT_I2C_ACK
+  C:0AA3H         LINE#         99
+  C:0AA3H         LINE#         100
+  C:0AA3H         LINE#         101
+  C:0AA5H         LINE#         103
+  C:0AA7H         LINE#         105
+  C:0AA9H         LINE#         106
+  -------         ENDPROC       SOFT_I2C_ACK
+  -------         PROC          SOFT_I2C_NAK
+  C:0AAAH         LINE#         111
+  C:0AAAH         LINE#         112
+  C:0AAAH         LINE#         113
+  C:0AACH         LINE#         115
+  C:0AAEH         LINE#         117
+  C:0AB0H         LINE#         118
+  -------         ENDPROC       SOFT_I2C_NAK
+  -------         PROC          SOFT_I2C_READ
+  B:0020H.2       SYMBOL        ack
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0007H         SYMBOL        dat
+  -------         ENDDO         
+  C:09C0H         LINE#         126
+  C:09C0H         LINE#         127
+  C:09C0H         LINE#         128
+  C:09C2H         LINE#         129
+  C:09C3H         LINE#         130
+  C:09C3H         LINE#         131
+  C:09C5H         LINE#         133
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 7
+
+
+  C:09C7H         LINE#         135
+  C:09CBH         LINE#         136
+  C:09CEH         LINE#         137
+  C:09CEH         LINE#         138
+  C:09D1H         LINE#         139
+  C:09D1H         LINE#         140
+  C:09D3H         LINE#         141
+  C:09D7H         LINE#         142
+  C:09DAH         LINE#         143
+  C:09DAH         LINE#         144
+  C:09DDH         LINE#         145
+  C:09DFH         LINE#         147
+  C:09DFH         LINE#         148
+  C:09E2H         LINE#         149
+  C:09E2H         LINE#         150
+  C:09E2H         LINE#         151
+  -------         ENDPROC       SOFT_I2C_READ
+  -------         PROC          SOFT_I2C_STOP
+  C:0AB1H         LINE#         156
+  C:0AB1H         LINE#         157
+  C:0AB1H         LINE#         158
+  C:0AB3H         LINE#         160
+  C:0AB5H         LINE#         162
+  C:0AB7H         LINE#         163
+  -------         ENDPROC       SOFT_I2C_STOP
+  -------         ENDMOD        SOFT_I2C
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:09E3H         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:09E3H         LINE#         5
+  C:09E3H         LINE#         6
+  C:09E3H         LINE#         8
+  C:09EDH         LINE#         9
+  C:09EDH         LINE#         10
+  C:09FBH         LINE#         11
+  C:0A02H         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        ?C?CLDPTR
+  C:0A54H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SOFT_I2C_INIT?SOFT_I2C
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SOFT_I2C_READ?SOFT_I2C
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/17/2023  15:35:37  PAGE 8
+
+
+    SEGMENT: ?PR?_LCD_WRITE_CMD?MAIN
+    CALLER1: ?PR?ISR1?MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?SOFT_I2C_GET_ACK?SOFT_I2C
+    CALLER1: ?PR?ISR1?MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_LCD_GOTOXY?MAIN
+    CALLER1: ?PR?ISR1?MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_LCD_WRITE_STRING?MAIN
+    CALLER1: ?PR?ISR1?MAIN
+    CALLER2: ?C_C51STARTUP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_LCD_WRITE_DATA?MAIN
+    CALLER1: ?PR?ISR1?MAIN
+    CALLER2: ?C_C51STARTUP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 021EH BYTE (26%) *
+******************************************************************************
+
+Program Size: data=20.3 xdata=0 code=711
+LINK/LOCATE RUN COMPLETE.  7 WARNING(S),  0 ERROR(S)

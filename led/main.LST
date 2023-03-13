@@ -1,0 +1,65 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/19/2022 12:41:55 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<regx52.h>
+   2          
+   3          unsigned char code Code7seg[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
+   4          #define seg P1
+   5          //sbit led = P0^0;
+   6          sbit button = P0^0;
+   7          bit pressold = 0;
+   8          
+   9          void delay_ms(unsigned int t)
+  10          { 
+  11   1        unsigned int x, y;
+  12   1        for(x=0 ; x<t; x++)
+  13   1        {
+  14   2          for(y=0 ;y < 123; y++);
+  15   2        }
+  16   1      }
+  17          
+  18          void Button(){
+  19   1        if(button == 0){
+  20   2            delay_ms(100);
+  21   2            if(button == 0 && pressold == 0){
+  22   3              //led = !led;
+  23   3              pressold == 1;
+*** WARNING C275 IN LINE 23 OF main.c: expression with possibly no effect
+  24   3              while(button == 0);
+  25   3            }
+  26   2          }
+  27   1          if(button == 1) pressold == 0;
+*** WARNING C275 IN LINE 27 OF main.c: expression with possibly no effect
+  28   1      }
+  29          
+  30          void main()
+  31          {
+  32   1        unsigned char i;
+  33   1        while(1)
+  34   1        {
+  35   2          for(i = 0; i < 10 ;i++){
+  36   3            seg = Code7seg[i];
+  37   3            delay_ms(1000);
+  38   3          }
+  39   2        }
+  40   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     81    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,160 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/30/2022  09:11:30  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE lesson1.obj TO MAIN RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  lesson1.obj (LESSON1)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?SLCMP)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  MAIN (LESSON1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0012H     UNIT         ?DT?LESSON1
+            DATA    001AH     0004H     UNIT         _DATA_GROUP_
+            IDATA   001EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0076H     UNIT         ?PR?MAIN?LESSON1
+            CODE    0902H     006BH     UNIT         ?C?LIB_CODE
+            CODE    096DH     0046H     UNIT         ?PR?_DELAY?LESSON1
+            CODE    09B3H     0045H     UNIT         ?PR?_DISPLAY?LESSON1
+            CODE    09F8H     0011H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   MAIN (LESSON1)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LESSON1
+  +--> ?C_INITSEG
+
+?PR?MAIN?LESSON1               -----    -----
+  +--> ?PR?_DISPLAY?LESSON1
+
+?PR?_DISPLAY?LESSON1           -----    -----
+  +--> ?PR?_DELAY?LESSON1
+
+?PR?_DELAY?LESSON1             001AH    0004H
+
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/30/2022  09:11:30  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  MAIN (LESSON1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LESSON1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:0080H.0       PUBLIC        Q1
+  D:00A0H         PUBLIC        P2
+  B:0080H.1       PUBLIC        Q2
+  B:0080H.2       PUBLIC        Q3
+  B:0080H.3       PUBLIC        Q4
+  C:0975H         PUBLIC        _delay
+  D:0008H         PUBLIC        nghin
+  C:09B3H         PUBLIC        _DISPLAY
+  D:0009H         PUBLIC        donvi
+  D:000AH         PUBLIC        chuc
+  C:088CH         PUBLIC        main
+  D:000BH         PUBLIC        tram
+  D:000CH         PUBLIC        M
+  D:0016H         PUBLIC        num
+  D:0018H         PUBLIC        i
+  C:096DH         SYMBOL        L?0017
+  -------         PROC          L?0016
+  -------         ENDPROC       L?0016
+  C:096DH         SYMBOL        L?0017
+  -------         PROC          _DELAY
+  D:0082H         SYMBOL        n
+  -------         DO            
+  D:001AH         SYMBOL        i
+  -------         ENDDO         
+  C:0975H         LINE#         11
+  C:0979H         LINE#         12
+  C:0979H         LINE#         13
+  C:09B2H         LINE#         14
+  -------         ENDPROC       _DELAY
+  -------         PROC          _DISPLAY
+  D:0006H         SYMBOL        n
+  C:09B3H         LINE#         15
+  C:09B3H         LINE#         16
+  C:09CBH         LINE#         17
+  C:09CDH         LINE#         18
+  C:09D1H         LINE#         19
+  C:09D4H         LINE#         20
+  C:09D6H         LINE#         22
+  C:09D8H         LINE#         23
+  C:09DCH         LINE#         24
+  C:09DFH         LINE#         25
+  C:09E1H         LINE#         27
+  C:09E3H         LINE#         28
+  C:09E7H         LINE#         29
+  C:09EAH         LINE#         30
+  C:09ECH         LINE#         32
+  C:09EEH         LINE#         33
+  C:09F2H         LINE#         34
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/30/2022  09:11:30  PAGE 3
+
+
+  C:09F5H         LINE#         35
+  C:09F7H         LINE#         36
+  C:09F7H         LINE#         37
+  -------         ENDPROC       _DISPLAY
+  -------         PROC          MAIN
+  C:088CH         LINE#         38
+  C:088CH         LINE#         39
+  C:088CH         LINE#         40
+  C:0899H         LINE#         41
+  C:08B5H         LINE#         42
+  C:08D1H         LINE#         43
+  C:08DEH         LINE#         44
+  C:08E5H         LINE#         45
+  C:08F0H         LINE#         46
+  C:08F8H         LINE#         47
+  C:08FAH         LINE#         49
+  C:08FAH         LINE#         50
+  C:0900H         LINE#         51
+  C:0900H         LINE#         52
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LESSON1
+
+  -------         MODULE        ?C?UIDIV
+  C:0902H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?SLCMP
+  C:0957H         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0111H BYTE (13%) *
+******************************************************************************
+
+Program Size: data=31.0 xdata=0 code=524
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

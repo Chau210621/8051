@@ -1,0 +1,138 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/17/2022  15:50:48  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\lesson1.obj, .\Objects\Delay.obj TO .\Objects\MAIN PRINT (.\Listings\MAIN.m51) RAM
+>> SIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\lesson1.obj (LESSON1)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SCDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\MAIN (LESSON1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     010EH     UNIT         ?PR?MAIN?LESSON1
+            CODE    0111H     0022H     UNIT         ?C?LIB_CODE
+            CODE    0133H     0020H     UNIT         ?PR?_DELAY?DELAY
+            CODE    0153H     000CH     UNIT         ?C_C51STARTUP
+            CODE    015FH     000AH     UNIT         ?CO?LESSON1
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MAIN (LESSON1)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LESSON1
+
+?PR?MAIN?LESSON1               0008H    0001H
+  +--> ?CO?LESSON1
+  +--> ?PR?_DELAY?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MAIN (LESSON1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LESSON1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2022  15:50:48  PAGE 2
+
+
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0003H         PUBLIC        main
+  B:0080H.2       PUBLIC        vang
+  B:0080H.1       PUBLIC        xanh
+  B:0080H.0       PUBLIC        Do
+  C:015FH         PUBLIC        Code7seg
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         15
+  C:0003H         LINE#         16
+  C:0003H         LINE#         19
+  C:0003H         LINE#         20
+  C:0003H         LINE#         22
+  C:0005H         LINE#         23
+  C:0007H         LINE#         24
+  C:0009H         LINE#         25
+  C:0019H         LINE#         26
+  C:0019H         LINE#         27
+  C:0034H         LINE#         28
+  C:0051H         LINE#         29
+  C:0058H         LINE#         30
+  C:005CH         LINE#         32
+  C:005EH         LINE#         33
+  C:0060H         LINE#         34
+  C:0062H         LINE#         35
+  C:0072H         LINE#         36
+  C:0072H         LINE#         37
+  C:008DH         LINE#         38
+  C:00AAH         LINE#         39
+  C:00B1H         LINE#         40
+  C:00B5H         LINE#         42
+  C:00B7H         LINE#         43
+  C:00B9H         LINE#         44
+  C:00BBH         LINE#         45
+  C:00CEH         LINE#         46
+  C:00CEH         LINE#         47
+  C:00E9H         LINE#         48
+  C:0106H         LINE#         49
+  C:010DH         LINE#         50
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LESSON1
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0133H         PUBLIC        _delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0133H         LINE#         5
+  C:0133H         LINE#         6
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2022  15:50:48  PAGE 3
+
+
+  C:0133H         LINE#         8
+  C:013DH         LINE#         9
+  C:013DH         LINE#         10
+  C:014BH         LINE#         11
+  C:0152H         LINE#         12
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        ?C?SCDIV
+  C:0111H         PUBLIC        ?C?SCDIV
+  -------         ENDMOD        ?C?SCDIV
+
+Program Size: data=10.0 xdata=0 code=361
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,156 @@
+C51 COMPILER V9.01   MAIN                                                                  02/03/2023 17:16:06 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Delay.h"
+   3          
+   4          #define UP 0
+   5          #define DOWN 1
+   6          
+   7          
+   8          sbit PWM_PIN = P2^0;
+   9          
+  10          unsigned int T, Ton, Toff;
+  11          unsigned char Ton_h_reload, Ton_l_reload, Toff_h_reload ,Toff_l_reload;
+  12          
+  13          // ck (us)
+  14          void PWM_Init(unsigned int ck)
+  15          {
+  16   1        PWM_PIN = 1;
+  17   1        
+  18   1        TMOD &= 0xF0;
+  19   1        TMOD |= 0x01;
+  20   1        
+  21   1        ET0 = 1;
+  22   1        EA = 1;
+  23   1        
+  24   1        T = ck; 
+  25   1        Ton = T/2; // Duty cycle =  50%
+  26   1        Toff = T - Ton;
+  27   1        
+  28   1        Ton_h_reload = (65536 - Ton) >> 8;
+  29   1        Ton_l_reload = (65536 - Ton) & 0x00FF;
+  30   1        
+  31   1        Toff_h_reload = (65536 - Toff) >> 8;
+  32   1        Toff_l_reload = (65536 - Toff) & 0x00FF;
+  33   1        
+  34   1        TH0 = (65536 - Ton) >> 8; 
+  35   1        TL0 = (65536 - Ton) & 0x00FF;
+  36   1      }
+  37          
+  38          void PWM_Start()
+  39          {
+  40   1        TR0 = 1;
+  41   1      }
+  42          
+  43          void PWM_Stop()
+  44          {
+  45   1        TR0 = 0;
+  46   1      }
+  47          
+  48          // :duty 0 - 100%
+  49          void PWM_Set_Duty(unsigned char duty)
+  50          {
+  51   1        if(duty == 0)
+  52   1        {
+  53   2          PWM_PIN = 0;
+  54   2          ET0 = 0;
+C51 COMPILER V9.01   MAIN                                                                  02/03/2023 17:16:06 PAGE 2   
+
+  55   2          
+  56   2        }
+  57   1        else if(duty == 100)
+  58   1        {
+  59   2          PWM_PIN = 1;
+  60   2          ET0 = 0;
+  61   2        }
+  62   1        else
+  63   1        {
+  64   2          Ton = (unsigned long)T*duty/100; //ép ki?u
+  65   2          Toff = T - Ton;
+  66   2          
+  67   2          Ton_h_reload = (65536 - Ton) >> 8;
+  68   2          Ton_l_reload = (65536 - Ton) & 0x00FF;
+  69   2          
+  70   2          Toff_h_reload = (65536 - Toff) >> 8;
+  71   2          Toff_l_reload = (65536 - Toff) & 0x00FF;
+  72   2          
+  73   2          ET0 = 1;
+  74   2        }
+  75   1        
+  76   1      }
+  77          
+  78          int main()
+  79          {
+  80   1        
+  81   1        unsigned char dir = UP, duty = 0;
+  82   1        PWM_Init(1000);
+  83   1        
+  84   1        PWM_Set_Duty(0);
+  85   1        PWM_Start();
+  86   1        
+  87   1        while(1)
+  88   1        {
+  89   2          Delay_ms(500);
+  90   2          if (dir == UP)
+  91   2          {
+  92   3            duty += 2;
+  93   3            if(duty == 100)
+  94   3            {
+  95   4              dir = DOWN;
+  96   4            }
+  97   3          }
+  98   2          else
+  99   2          {
+ 100   3            duty -= 2;
+ 101   3            if(duty == 0)
+ 102   3            {
+ 103   4              dir = UP;
+ 104   4            }
+ 105   3          }
+ 106   2          PWM_Set_Duty(duty);
+ 107   2          
+ 108   2        }
+ 109   1        
+ 110   1      }
+ 111          
+ 112          
+ 113          void Timer0Overflow() interrupt 1
+ 114          {
+ 115   1        PWM_PIN = !PWM_PIN ;
+ 116   1        
+C51 COMPILER V9.01   MAIN                                                                  02/03/2023 17:16:06 PAGE 3   
+
+ 117   1        if(PWM_PIN == 0)
+ 118   1        {
+ 119   2          TH0 = Toff_h_reload;
+ 120   2          TL0 = Toff_l_reload;
+ 121   2        }
+ 122   1        else
+ 123   1        { 
+ 124   2          TH0 = Ton_h_reload;
+ 125   2          TL0 = Ton_l_reload;
+ 126   2        }
+ 127   1        
+ 128   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    367    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

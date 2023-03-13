@@ -1,0 +1,64 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/26/2022 22:57:40 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Delay.h"
+   3          
+   4          #define shift_clock P0_0
+   5          #define data_serial P0_1
+   6          #define latch_clock P0_2
+   7          
+   8          unsigned char code font5x7[] = {0x0E, 0x11, 0x13, 0x15, 0x19, 0x11, 0x0E};
+   9          
+  10          void ShiftOut(unsigned char n)
+  11          {
+  12   1        unsigned char i;
+  13   1        for(i = 0; i < 8; i++)
+  14   1        {
+  15   2          
+  16   2          data_serial = n & (0x80 >> i);
+  17   2          
+  18   2          shift_clock = 0;
+  19   2          shift_clock = 1;
+  20   2        }
+  21   1        
+  22   1        latch_clock = 0;
+  23   1        latch_clock = 1;
+  24   1      }
+  25          
+  26          
+  27          void main()
+  28          {
+  29   1        unsigned char i ;
+  30   1        while(1)
+  31   1        {
+  32   2          for(i = 0 ; i < 7; i++)
+  33   2          {
+  34   3            ShiftOut(font5x7[i]);
+  35   3            P3 = 0x01<<i; 
+  36   3            delay(1);
+  37   3            P3 = 0;
+  38   3          }
+  39   2        }
+  40   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    107    ----
+   CONSTANT SIZE    =      7    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

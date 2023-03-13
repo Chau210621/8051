@@ -1,0 +1,3 @@
+".\Objects\or_bit.obj" 
+TO ".\Objects\OR_bit" 
+PRINT(".\Listings\OR_bit.m51")

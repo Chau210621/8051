@@ -1,0 +1,167 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/18/2023  20:39:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj TO .\Objects\main PRINT (.\Listings\main.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\main (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00DDH     UNIT         ?PR?MAIN?MAIN
+            CODE    08DDH     0020H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    08FDH     000FH     UNIT         ?PR?_UART_WRITE_DATA?MAIN
+            CODE    090CH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\main (MAIN)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                     0008H    0003H
+  +--> ?PR?_UART_WRITE_DATA?MAIN
+  +--> ?PR?_DELAY_MS?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\main (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/18/2023  20:39:49  PAGE 2
+
+
+  B:0098H.1       PUBLIC        TI
+  C:0800H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  C:0900H         PUBLIC        _Uart_Write_Data
+  B:00B0H.2       PUBLIC        Pin_Clock
+  -------         PROC          L?0029
+  -------         ENDPROC       L?0029
+  -------         PROC          _UART_WRITE_DATA
+  D:0007H         SYMBOL        dat
+  C:0900H         LINE#         10
+  C:0900H         LINE#         11
+  C:0900H         LINE#         12
+  C:0902H         LINE#         14
+  C:0905H         LINE#         15
+  C:0907H         LINE#         17
+  C:0909H         LINE#         18
+  C:090BH         LINE#         19
+  -------         ENDPROC       _UART_WRITE_DATA
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        j
+  D:000AH         SYMBOL        b
+  -------         ENDDO         
+  C:0800H         LINE#         22
+  C:0800H         LINE#         23
+  C:0800H         LINE#         26
+  C:0804H         LINE#         27
+  C:0804H         LINE#         28
+  C:0804H         LINE#         29
+  C:0807H         LINE#         30
+  C:0807H         LINE#         31
+  C:080CH         LINE#         32
+  C:0813H         LINE#         33
+  C:0818H         LINE#         34
+  C:081FH         LINE#         35
+  C:0828H         LINE#         36
+  C:082BH         LINE#         37
+  C:082BH         LINE#         38
+  C:0830H         LINE#         39
+  C:0837H         LINE#         40
+  C:083CH         LINE#         41
+  C:0843H         LINE#         42
+  C:084CH         LINE#         43
+  C:084FH         LINE#         44
+  C:084FH         LINE#         45
+  C:0852H         LINE#         46
+  C:085FH         LINE#         47
+  C:0862H         LINE#         48
+  C:0869H         LINE#         49
+  C:0872H         LINE#         50
+  C:0875H         LINE#         51
+  C:0875H         LINE#         52
+  C:0878H         LINE#         53
+  C:0885H         LINE#         54
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/18/2023  20:39:49  PAGE 3
+
+
+  C:0888H         LINE#         55
+  C:088FH         LINE#         56
+  C:0898H         LINE#         57
+  C:089BH         LINE#         58
+  C:089BH         LINE#         59
+  C:08A3H         LINE#         60
+  C:08A7H         LINE#         61
+  C:08AEH         LINE#         62
+  C:08B7H         LINE#         63
+  C:08BAH         LINE#         64
+  C:08C6H         LINE#         65
+  C:08C6H         LINE#         66
+  C:08CEH         LINE#         67
+  C:08D2H         LINE#         68
+  C:08D9H         LINE#         69
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:08DDH         PUBLIC        _Delay_ms
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:08DDH         LINE#         5
+  C:08DDH         LINE#         6
+  C:08DDH         LINE#         8
+  C:08E7H         LINE#         9
+  C:08E7H         LINE#         10
+  C:08F5H         LINE#         11
+  C:08FCH         LINE#         12
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 010CH BYTE (13%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=283
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

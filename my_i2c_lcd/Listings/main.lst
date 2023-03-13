@@ -1,0 +1,153 @@
+C51 COMPILER V9.01   MAIN                                                                  01/17/2023 15:35:36 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"main.h"
+   2          #include"..\Lib\Soft_I2c.h"
+   3          #include"..\Lib\Delay.h"
+   4          #include <intrins.h>
+   5          #include"..\Lib\Port.h"
+   6          
+   7          unsigned char slave_add = 0x4E;
+   8          
+   9          
+  10          void Lcd_Write_Cmd(unsigned char cmd)
+  11          {
+  12   1        unsigned char cmd_l, cmd_h;
+  13   1        cmd_l = (cmd << 4) & 0xF0;// dich 4 bit cuoi len, clean 4 bit dau di
+  14   1        cmd_h = cmd & 0xF0; //clean 4 bit cuoi di
+  15   1        
+  16   1        /* Lcd can 1 xung EN de day du lieu vao
+  17   1        *Voi che do 4 bit thi day 4 bit dau vao trc
+  18   1        *Voi 1 xung tu EN du lieu tu 4 chan se duoc gui vao
+  19   1        4 bit data day vao sau  */
+  20   1        Soft_I2c_Start(); //BL EN RW RS 1 1 0 0
+  21   1        Soft_I2c_Write(slave_add); //gui dia chi co ic
+  22   1        Delay_ms(1);
+  23   1        Soft_I2c_Write(cmd_h | 0x0C); //xxxx 1100:xxxx data muon gui 
+  24   1        Delay_ms(1);
+  25   1        Soft_I2c_Write(cmd_h | 0x08);
+  26   1        Delay_ms(1);
+  27   1        Soft_I2c_Write(cmd_l | 0x0C); //xxxx 1100:xxxx data muon gui  
+  28   1        Delay_ms(1);
+  29   1        Soft_I2c_Write(cmd_l | 0x08);
+  30   1        Delay_ms(1);
+  31   1        Soft_I2c_Stop();
+  32   1      }
+  33          
+  34          void Lcd_Write_Data(unsigned char dat)
+  35          {
+  36   1        unsigned char dat_l, dat_h;
+  37   1        dat_l = (dat << 4) & 0xF0;
+  38   1        dat_h = (dat & 0xF0);
+  39   1        
+  40   1        Soft_I2c_Start(); //BL EN RW RS 1 1 0 1
+  41   1        Soft_I2c_Write(slave_add); //gui dia chi co ic
+  42   1        Soft_I2c_Write(dat_h | 0x0D);  
+  43   1        Soft_I2c_Write(dat_h | 0x09);
+  44   1        Soft_I2c_Write(dat_l | 0x0D); //xxxx 1100:xxxx data muon gui 
+  45   1        Soft_I2c_Write(dat_l | 0x09);
+  46   1        Soft_I2c_Stop();
+  47   1      }
+  48          
+  49          void Lcd_Write_String(unsigned char *p)
+  50          {
+  51   1        while(*p != '\0')
+  52   1        {
+  53   2          Lcd_Write_Data(*p++);//*dat++ = dat[i++]
+  54   2        }
+C51 COMPILER V9.01   MAIN                                                                  01/17/2023 15:35:36 PAGE 2   
+
+  55   1        
+  56   1      }
+  57          
+  58          void Lcd_Clear()
+  59          {
+  60   1        Lcd_Write_Cmd(0x01);
+  61   1        Delay_ms(1);
+  62   1      }
+  63          
+  64          void Lcd_Init()
+  65          {
+  66   1        Lcd_Write_Cmd(0x02);  // Return home
+  67   1        Lcd_Write_Cmd(0x28);  // 4 bit mode
+  68   1        Lcd_Write_Cmd(0x0C);  // Display On , cursor off
+  69   1        Lcd_Write_Cmd(0x06);  
+  70   1        Lcd_Write_Cmd(0x01); // clear display
+  71   1      }
+  72          
+  73          void LCD_Gotoxy (int col, int row)
+  74          {
+  75   1        int pos_Addr;
+  76   1        if(row == 1) 
+  77   1        {
+  78   2          pos_Addr = 0x80 + row - 2 + col;
+  79   2        }
+  80   1        else
+  81   1        {
+  82   2          pos_Addr = 0x80 | (0x40 + col - 1);
+  83   2        }
+  84   1        Lcd_Write_Cmd(pos_Addr);
+  85   1      }
+  86          
+  87          
+  88          
+  89          void main()
+  90          {
+  91   1        // 1000 0101 // cho phep ngat ngoai 1 va 0
+  92   1        IE = 0x84;
+  93   1        //IT0 = 0;//CHO PHEP NGAT THEO SUON AM
+  94   1        IT1 = 0;
+  95   1        LED1 = LED2 = LED3 = LED4 = 0;
+  96   1        Lcd_Init();
+  97   1        LCD_Gotoxy(1,1);
+  98   1        Lcd_Write_String("Ngat ngoai 8");
+  99   1        while(1)
+ 100   1        {
+ 101   2          
+ 102   2          //PCON |= 0x01;//che do ngu
+ 103   2        }
+ 104   1      }
+ 105          
+ 106          /* ngat ngoai 0 */
+ 107          /*
+ 108          
+ 109          void ISR0(void) interrupt 0
+ 110          {
+ 111            LED1 = !LED1;
+ 112            Lcd_Clear();
+ 113            LCD_Gotoxy(1,1);
+ 114            Lcd_Write_String("Ngat ngoai 0");
+ 115            Delay_ms(2000);
+ 116          }
+C51 COMPILER V9.01   MAIN                                                                  01/17/2023 15:35:36 PAGE 3   
+
+ 117          */
+ 118          void ISR1(void) interrupt 2
+ 119          {
+ 120   1        LED2 = !LED2;
+ 121   1        Lcd_Clear();
+ 122   1        LCD_Gotoxy(1,1);
+ 123   1        Lcd_Write_String("Ngat ngoai 1");
+ 124   1        Delay_ms(2000);
+ 125   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    375    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

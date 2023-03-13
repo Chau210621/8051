@@ -1,0 +1,73 @@
+C51 COMPILER V9.60.0.0   DELAY                                                             12/15/2022 11:56:09 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN .\Objects\Delay.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Delay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Del
+                    -ay.lst) TABS(2) OBJECT(.\Objects\Delay.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "Delay.h"
+*** WARNING C318 IN LINE 2 OF Delay.c: can't open file 'Delay.h'
+   3          #if(FREQ_OSC == 12000000) 
+   4            void Delay_ms(unsigned int t)
+   5            {
+   6   1          unsigned int x, y;
+   7   1          for (x = 0; x < t ; x ++)
+   8   1          {
+   9   2            for (y = 0; y < 123; y++);
+  10   2          }
+  11   1        }
+  12            
+  13          #elif(FREQ_OSC == 11059200)
+                void Delay_ms(unsigned int t)
+                {
+                  unsigned int x, y;
+                  for (x = 0; x < t ; x ++)
+                  {
+                    for (y = 0; y < 113; y++);
+                  }
+                }
+              
+              #elif(FREQ_OSC == 8000000)
+                void Delay_ms(unsigned int t)
+                {
+                  unsigned int x,
+                  unsigned char y;
+                  for (x = 0; x < t ; x ++)
+                  {
+                    for (y = 0; y < 218; y++);
+                  }
+                }
+                
+              #elif(FREQ_OSC == 4000000)
+                void Delay_ms(unsigned int t)
+                {
+                  unsigned int x,
+                  unsigned char y;
+                  for (x = 0; x < t ; x ++)
+                  {
+                    for (y = 0; y < 106; y++);
+                  }
+                }
+              #else
+                #error "Khong co ham Delay_ms nao tuong ung voi tan so dao dong"
+              #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     32    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   DELAY                                                             12/15/2022 11:56:09 PAGE 2   
+
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
